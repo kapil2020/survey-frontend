@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RP Survey</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        section {
+            margin-bottom: 20px;
+        }
+        label, select, input {
+            display: block;
+            margin: 10px 0;
+        }
+        .likert-scale {
+            display: flex;
+            justify-content: space-around;
+            max-width: 500px;
+            margin: 15px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="survey-container">
+        <h2>Impact of Air Pollution Exposure on Travel Behaviour</h2>
+
+        <!-- Location Retrieval Section -->
+        <section id="pre-survey">
+            <h3>Pre-Survey Details</h3>
+            <button type="button" onclick="getLocation()">Get My Location</button>
+            <p>Q.1 Location of surveyed household:</p>
+            <p>Latitude: <span id="latitude" data-lat="Not available">Not available</span></p>
+            <p>Longitude: <span id="longitude" data-lon="Not available">Not available</span></p>
+
+            <label for="landmark">Specific landmark (optional):</label>
+            <input type="text" id="landmark" placeholder="Nearest landmark">
+        </section>
+
+        <!-- Section 1: Trip Information -->
+        <section id="trip-info">
+            <h3>Section 1: Trip Information</h3>
+
+           <!-- Origin Dropdown -->
+        <label for="origin">Q.2 Select your typical origin location:</label>
+        <select id="origin">
+            <option value="" disabled selected>Select your origin location</option>
+            <optgroup label="North Kolkata">
+                <option value="Dum Dum">Dum Dum</option>
+                <option value="Shyambazar">Shyambazar</option>
+                <option value="Hatibagan">Hatibagan</option>
+                <option value="Maniktala">Maniktala</option>
+                <option value="Kankurgachi">Kankurgachi</option>
+                <option value="Rajabazar">Rajabazar</option>
+                <option value="Shobhabazar">Shobhabazar</option>
+                <option value="Shyampukur">Shyampukur</option>
+                <option value="Tala">Tala</option>
+                <option value="Sonagachi">Sonagachi</option>
+                <option value="Kumortuli">Kumortuli</option>
+                <option value="Bagbazar">Bagbazar</option>
+                <option value="Jorabagan">Jorabagan</option>
+                <option value="Burrabazar">Burrabazar</option>
+                <option value="Jorasanko">Jorasanko</option>
+                <option value="Phoolbagan">Phoolbagan</option>
+                <option value="Ultadanga">Ultadanga</option>
+                <option value="Chitpur">Chitpur</option>
+                <option value="Nagerbazar">Nagerbazar</option>
+                <option value="Lake Town">Lake Town</option>
+                <option value="Bangur Avenue">Bangur Avenue</option>
+                <option value="Pathuriaghata">Pathuriaghata</option>
+                <option value="Cossipore">Cossipore</option>
+                <option value="Belgachia">Belgachia</option>
+                <option value="Sinthee">Sinthee</option>
+                <option value="Baranagar">Baranagar</option>
+            </optgroup>
+            <optgroup label="South Kolkata">
+                <option value="Ballygunge">Ballygunge</option>
+                <option value="Alipore">Alipore</option>
+                <option value="New Alipore">New Alipore</option>
+                <option value="Lansdowne">Lansdowne</option>
+                <option value="Bhawanipore">Bhawanipore</option>
+                <option value="Kalighat">Kalighat</option>
+                <option value="Gariahat">Gariahat</option>
+                <option value="Southern Avenue">Southern Avenue</option>
+                <option value="Chetla">Chetla</option>
+                <option value="Jodhpur Park">Jodhpur Park</option>
+                <option value="Lake Gardens">Lake Gardens</option>
+                <option value="South City">South City</option>
+                <option value="Jadavpur">Jadavpur</option>
+                <option value="Dhakuria">Dhakuria</option>
+                <option value="Tollygunge">Tollygunge</option>
+            </optgroup>
+            <optgroup label="East Kolkata">
+                <option value="Topsia">Topsia</option>
+                <option value="Picnic Garden">Picnic Garden</option>
+                <option value="Tangra">Tangra</option>
+                <option value="Gobra">Gobra</option>
+                <option value="Kustia">Kustia</option>
+                <option value="Tiljala">Tiljala</option>
+                <option value="Anandapur">Anandapur</option>
+                <option value="East Kolkata Twp">East Kolkata Twp</option>
+                <option value="Panchasayar">Panchasayar</option>
+                <option value="Garia">Garia</option>
+                <option value="Madurdaha">Madurdaha</option>
+                <option value="Nayabad">Nayabad</option>
+                <option value="Kalikapur">Kalikapur</option>
+                <option value="Purbalok">Purbalok</option>
+                <option value="Mukundapur">Mukundapur</option>
+                <option value="Ajoy Nagar">Ajoy Nagar</option>
+                <option value="Hiland Park">Hiland Park</option>
+                <option value="Chak Garia">Chak Garia</option>
+                <option value="Patuli">Patuli</option>
+                <option value="Newtown">Newtown</option>
+            </optgroup>
+            <optgroup label="Central Kolkata">
+                <option value="West Bengal Secretariat">West Bengal Secretariat</option>
+                <option value="General Post Office">General Post Office</option>
+                <option value="Reserve Bank of India">Reserve Bank of India</option>
+                <option value="High Court">High Court</option>
+                <option value="Lalbazar Police Headquarters">Lalbazar Police Headquarters</option>
+                <option value="Esplanade">Esplanade</option>
+                <option value="Park Street">Park Street</option>
+                <option value="Chowringhee">Chowringhee</option>
+                <option value="Camac Street">Camac Street</option>
+                <option value="Wood Street">Wood Street</option>
+                <option value="Loudon Street">Loudon Street</option>
+                <option value="Shakespeare Sarani">Shakespeare Sarani</option>
+                <option value="A. J. C. Bose Road">A. J. C. Bose Road</option>
+                <option value="Maidan">Maidan</option>
+                <option value="Victoria Memorial">Victoria Memorial</option>
+                <option value="Kolkata Race Course">Kolkata Race Course</option>
+                <option value="Park Circus">Park Circus</option>
+                <option value="Sealdah">Sealdah</option>
+                <option value="Beliaghata">Beliaghata</option>
+                <option value="College Street">College Street</option>
+                <option value="Burrabazar">Burrabazar</option>
+                <option value="Bowbazar">Bowbazar</option>
+                <option value="Taltala">Taltala</option>
+                <option value="Janbazar">Janbazar</option>
+                <option value="Entally">Entally</option>
+                <option value="Chandni Chowk">Chandni Chowk</option>
+                <option value="Lalbazar">Lalbazar</option>
+                <option value="Chowringhee">Chowringhee</option>
+                <option value="Dharmatala">Dharmatala</option>
+                <option value="Rabindra Sadan">Rabindra Sadan</option>
+                <option value="Tiretti Bazaar">Tiretti Bazaar</option>
+                <option value="Bow Barracks">Bow Barracks</option>
+                <option value="Babughat">Babughat</option>
+                <option value="Princep Ghat">Princep Ghat</option>
+                <option value="Hastings">Hastings</option>
+                <option value="Millennium Park">Millennium Park</option>
+            </optgroup>
+        </select>
+
+        <!-- Destination Dropdown -->
+        <label for="destination">Q.3 Select your typical destination location:</label>
+        <select id="destination">
+            <option value="" disabled selected>Select your destination location</option>
+            <optgroup label="North Kolkata">
+                <option value="Dum Dum">Dum Dum</option>
+                <option value="Shyambazar">Shyambazar</option>
+                <option value="Hatibagan">Hatibagan</option>
+                <option value="Maniktala">Maniktala</option>
+                <option value="Kankurgachi">Kankurgachi</option>
+                <option value="Rajabazar">Rajabazar</option>
+                <option value="Shobhabazar">Shobhabazar</option>
+                <option value="Shyampukur">Shyampukur</option>
+                <option value="Tala">Tala</option>
+                <option value="Sonagachi">Sonagachi</option>
+                <option value="Kumortuli">Kumortuli</option>
+                <option value="Bagbazar">Bagbazar</option>
+                <option value="Jorabagan">Jorabagan</option>
+                <option value="Burrabazar">Burrabazar</option>
+                <option value="Jorasanko">Jorasanko</option>
+                <option value="Phoolbagan">Phoolbagan</option>
+                <option value="Ultadanga">Ultadanga</option>
+                <option value="Chitpur">Chitpur</option>
+                <option value="Nagerbazar">Nagerbazar</option>
+                <option value="Lake Town">Lake Town</option>
+                <option value="Bangur Avenue">Bangur Avenue</option>
+                <option value="Pathuriaghata">Pathuriaghata</option>
+                <option value="Cossipore">Cossipore</option>
+                <option value="Belgachia">Belgachia</option>
+                <option value="Sinthee">Sinthee</option>
+                <option value="Baranagar">Baranagar</option>
+            </optgroup>
+            <optgroup label="South Kolkata">
+                <option value="Ballygunge">Ballygunge</option>
+                <option value="Alipore">Alipore</option>
+                <option value="New Alipore">New Alipore</option>
+                <option value="Lansdowne">Lansdowne</option>
+                <option value="Bhawanipore">Bhawanipore</option>
+                <option value="Kalighat">Kalighat</option>
+                <option value="Gariahat">Gariahat</option>
+                <option value="Southern Avenue">Southern Avenue</option>
+                <option value="Chetla">Chetla</option>
+                <option value="Jodhpur Park">Jodhpur Park</option>
+                <option value="Lake Gardens">Lake Gardens</option>
+                <option value="South City">South City</option>
+                <option value="Jadavpur">Jadavpur</option>
+                <option value="Dhakuria">Dhakuria</option>
+                <option value="Tollygunge">Tollygunge</option>
+            </optgroup>
+            <optgroup label="East Kolkata">
+                <option value="Topsia">Topsia</option>
+                <option value="Picnic Garden">Picnic Garden</option>
+                <option value="Tangra">Tangra</option>
+                <option value="Gobra">Gobra</option>
+                <option value="Kustia">Kustia</option>
+                <option value="Tiljala">Tiljala</option>
+                <option value="Anandapur">Anandapur</option>
+                <option value="East Kolkata Twp">East Kolkata Twp</option>
+                <option value="Panchasayar">Panchasayar</option>
+                <option value="Garia">Garia</option>
+                <option value="Madurdaha">Madurdaha</option>
+                <option value="Nayabad">Nayabad</option>
+                <option value="Kalikapur">Kalikapur</option>
+                <option value="Purbalok">Purbalok</option>
+                <option value="Mukundapur">Mukundapur</option>
+                <option value="Ajoy Nagar">Ajoy Nagar</option>
+                <option value="Hiland Park">Hiland Park</option>
+                <option value="Chak Garia">Chak Garia</option>
+                <option value="Patuli">Patuli</option>
+                <option value="Newtown">Newtown</option>
+            </optgroup>
+            <optgroup label="Central Kolkata">
+                <option value="West Bengal Secretariat">West Bengal Secretariat</option>
+                <option value="General Post Office">General Post Office</option>
+                <option value="Reserve Bank of India">Reserve Bank of India</option>
+                <option value="High Court">High Court</option>
+                <option value="Lalbazar Police Headquarters">Lalbazar Police Headquarters</option>
+                <option value="Esplanade">Esplanade</option>
+                <option value="Park Street">Park Street</option>
+                <option value="Chowringhee">Chowringhee</option>
+                <option value="Camac Street">Camac Street</option>
+                <option value="Wood Street">Wood Street</option>
+                <option value="Loudon Street">Loudon Street</option>
+                <option value="Shakespeare Sarani">Shakespeare Sarani</option>
+                <option value="A. J. C. Bose Road">A. J. C. Bose Road</option>
+                <option value="Maidan">Maidan</option>
+                <option value="Victoria Memorial">Victoria Memorial</option>
+                <option value="Kolkata Race Course">Kolkata Race Course</option>
+                <option value="Park Circus">Park Circus</option>
+                <option value="Sealdah">Sealdah</option>
+                <option value="Beliaghata">Beliaghata</option>
+                <option value="College Street">College Street</option>
+                <option value="Burrabazar">Burrabazar</option>
+                <option value="Bowbazar">Bowbazar</option>
+                <option value="Taltala">Taltala</option>
+                <option value="Janbazar">Janbazar</option>
+                <option value="Entally">Entally</option>
+                <option value="Chandni Chowk">Chandni Chowk</option>
+                <option value="Lalbazar">Lalbazar</option>
+                <option value="Chowringhee">Chowringhee</option>
+                <option value="Dharmatala">Dharmatala</option>
+                <option value="Rabindra Sadan">Rabindra Sadan</option>
+                <option value="Tiretti Bazaar">Tiretti Bazaar</option>
+                <option value="Bow Barracks">Bow Barracks</option>
+                <option value="Babughat">Babughat</option>
+                <option value="Princep Ghat">Princep Ghat</option>
+                <option value="Hastings">Hastings</option>
+                <option value="Millennium Park">Millennium Park</option>
+            </optgroup>
+        </select>
+
+
+
+            <label for="travel_mode">Q.4 Select the primary mode of travel for your daily trip:</label>
+            <select id="travel_mode" onchange="showPTAccess()">
+                <option value="" disabled selected>Select your mode of travel</option>
+                <option value="car">Car</option>
+                <option value="metro">Metro</option>
+                <option value="bus">Bus</option>
+                <option value="bicycle">Bicycle</option>
+                <option value="walking">Walking</option>
+                <option value="two_wheeler">Two-Wheeler</option>
+                <option value="auto_rickshaw">Auto-rickshaw</option>
+            </select>
+
+            <div id="pt_access_mode" style="display: none;">
+                <label>If PT, what is the access mode?</label>
+                <select id="access_mode">
+                    <option value="" disabled selected>Select access mode</option>
+                    <option value="walk">Walk</option>
+                    <option value="auto_rickshaw">Auto Rickshaw</option>
+                    <option value="cycle_rickshaw">Cycle Rickshaw</option>
+                </select>
+            </div>
+        
+
+        <label for="frequency">Q.5 How frequently do you travel in a week using the primary mode mentioned?</label>
+        <select id="frequency">
+            <option value="" disabled selected>Select frequency</option>
+            <option value="everyday">Everyday</option>
+            <option value="few_days">Few days a week</option>
+            <option value="once_week">Once a week</option>
+        </select>
+
+        <label for="purpose">Q.6 What is the main purpose of your daily trip?</label>
+        <select id="purpose">
+            <option value="" disabled selected>Select purpose</option>
+            <option value="work">Work</option>
+            <option value="education">Education</option>
+            <option value="leisure">Leisure</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="distance">Q.7 How long is your most typical trip?</label>
+        <select id="distance">
+            <option value="" disabled selected>Select distance</option>
+            <option value="less_2km">Less than 2km</option>
+            <option value="2_5km">2-5km</option>
+            <option value="5_10km">5-10km</option>
+            <option value="more_10km">More than 10km</option>
+        </select>
+        </section>
+        <!-- Section 2: Air Quality Awareness -->
+        <section id="air-quality-awareness">
+            <h3>Section 2: Air Quality Awareness</h3>
+
+            <label>Q.12 Which of the above scenarios describes your typical exposure to air quality during your weekday commute in this winter season?</label>
+            <select id="aqi_exposure">
+                <option value="" disabled selected>Select AQI exposure level</option>
+                <option value="good">Good</option>
+                <option value="satisfactory">Satisfactory</option>
+                <option value="moderate">Moderate</option>
+                <option value="poor">Poor</option>
+                <option value="very_poor">Very Poor</option>
+                <option value="severe">Severe</option>
+            </select>
+
+            <label>Q.13 Are you aware of the Air Quality Index (AQI) levels as shown in the figure above and/or understand its implications on health?</label>
+            <select id="aqi_awareness">
+                <option value="" disabled selected>Select awareness level</option>
+                <option value="aware_understand">Aware and understand it</option>
+                <option value="aware_no_understand">Aware but do not understand it</option>
+                <option value="not_aware">Not aware</option>
+            </select>
+
+            <label>Q.14 Which information source do you use for checking the Air Quality Index (AQI)/ AQI level?</label>
+            <select id="aqi_info_source">
+                <option value="" disabled selected>Select information source</option>
+                <option value="website_app">Website or Mobile Applications</option>
+                <option value="newspaper">Newspaper</option>
+                <option value="public_monitors">Public Monitors</option>
+                <option value="television">Television</option>
+                <option value="not_check">Not check at all</option>
+            </select>
+
+            <label>Q.15 How frequently do you look at the Air Quality Index/level?</label>
+            <select id="aqi_frequency">
+                <option value="" disabled selected>Select frequency</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Once in a week</option>
+                <option value="monthly">Once in a month</option>
+                <option value="special_advisory">On some special advisory</option>
+                <option value="never">Never</option>
+            </select>
+
+            <label>Q.16 What steps/actions do you take if air quality is affecting during your commute?</label>
+            <select id="aqi_actions">
+                <option value="" disabled selected>Select action</option>
+                <option value="change_route">Change the route</option>
+                <option value="change_mode">Change the mode</option>
+                <option value="change_time">Change the departure time</option>
+                <option value="avoid_travel">Avoid the travel</option>
+                <option value="no_action">No action</option>
+            </select>
+
+            <label>Q.17 After or during travel, do you feel any of these? Please select all applicable</label>
+                <div class="checkbox-group">
+                    <option value="" disabled selected>Select action</option>
+                    <label><input type="checkbox" value="sneezing"> Sneezing</label>
+                    <label><input type="checkbox" value="runny_nose"> Runny nose</label>
+                    <label><input type="checkbox" value="eye_irritation"> Eye irritation</label>
+                    <label><input type="checkbox" value="skin_problem"> Skin problem</label>
+                    <label><input type="checkbox" value="none"> None</label>
+                    <label>Other: <input type="text" id="other_symptoms" placeholder="Specify"></label>
+                </div>
+        </section>
+
+        <section id="perception-attitude">
+            <h3>Section 3: Perception/Attitude</h3>
+            <p>Rate your level of agreement with the following statements (1 = Strongly Disagree, 5 = Strongly Agree):</p>
+        
+            <!-- General Air Pollution Awareness -->
+            <h4>General Air Pollution Awareness</h4>
+            <label>I have complete information about the air pollution levels.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="info_about_air_pollution" value="1"> 1</label>
+                <label><input type="radio" name="info_about_air_pollution" value="2"> 2</label>
+                <label><input type="radio" name="info_about_air_pollution" value="3"> 3</label>
+                <label><input type="radio" name="info_about_air_pollution" value="4"> 4</label>
+                <label><input type="radio" name="info_about_air_pollution" value="5"> 5</label>
+            </div>
+        
+            <label>I check the air pollution information portals/apps daily.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="check_air_pollution_apps" value="1"> 1</label>
+                <label><input type="radio" name="check_air_pollution_apps" value="2"> 2</label>
+                <label><input type="radio" name="check_air_pollution_apps" value="3"> 3</label>
+                <label><input type="radio" name="check_air_pollution_apps" value="4"> 4</label>
+                <label><input type="radio" name="check_air_pollution_apps" value="5"> 5</label>
+            </div>
+        
+            <label>Information about air quality influences my daily trip planning (mode, route, or time of travel).</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="air_quality_influences_trip" value="1"> 1</label>
+                <label><input type="radio" name="air_quality_influences_trip" value="2"> 2</label>
+                <label><input type="radio" name="air_quality_influences_trip" value="3"> 3</label>
+                <label><input type="radio" name="air_quality_influences_trip" value="4"> 4</label>
+                <label><input type="radio" name="air_quality_influences_trip" value="5"> 5</label>
+            </div>
+        
+            <label>I believe exposure to air pollution can impact my health.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="air_pollution_impact_health" value="1"> 1</label>
+                <label><input type="radio" name="air_pollution_impact_health" value="2"> 2</label>
+                <label><input type="radio" name="air_pollution_impact_health" value="3"> 3</label>
+                <label><input type="radio" name="air_pollution_impact_health" value="4"> 4</label>
+                <label><input type="radio" name="air_pollution_impact_health" value="5"> 5</label>
+            </div>
+        
+            <!-- Attitudes Toward Public Transport -->
+            <h4>Attitudes Toward Public Transport (Bus, Metro)</h4>
+            <label>I use public transport modes as they have lower exposure to air pollution.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="public_transport_lower_pollution" value="1"> 1</label>
+                <label><input type="radio" name="public_transport_lower_pollution" value="2"> 2</label>
+                <label><input type="radio" name="public_transport_lower_pollution" value="3"> 3</label>
+                <label><input type="radio" name="public_transport_lower_pollution" value="4"> 4</label>
+                <label><input type="radio" name="public_transport_lower_pollution" value="5"> 5</label>
+            </div>
+        
+            <label>I prefer public transport because it helps reduce air pollution in the city.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="prefer_public_transport_reduce_pollution" value="1"> 1</label>
+                <label><input type="radio" name="prefer_public_transport_reduce_pollution" value="2"> 2</label>
+                <label><input type="radio" name="prefer_public_transport_reduce_pollution" value="3"> 3</label>
+                <label><input type="radio" name="prefer_public_transport_reduce_pollution" value="4"> 4</label>
+                <label><input type="radio" name="prefer_public_transport_reduce_pollution" value="5"> 5</label>
+            </div>
+        
+            <label>I believe public transport offers a cleaner environment in terms of exposure to pollutants when compared to active transport or using a private vehicle.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="public_transport_cleaner_environment" value="1"> 1</label>
+                <label><input type="radio" name="public_transport_cleaner_environment" value="2"> 2</label>
+                <label><input type="radio" name="public_transport_cleaner_environment" value="3"> 3</label>
+                <label><input type="radio" name="public_transport_cleaner_environment" value="4"> 4</label>
+                <label><input type="radio" name="public_transport_cleaner_environment" value="5"> 5</label>
+            </div>
+        
+            <!-- Attitudes Toward Private Vehicles -->
+            <h4>Attitudes Toward Private Vehicles (Car, Two-Wheeler)</h4>
+            <label>I am willing to reduce the use of my private vehicle if it contributes to lower air pollution in the city.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="reduce_private_vehicle_use" value="1"> 1</label>
+                <label><input type="radio" name="reduce_private_vehicle_use" value="2"> 2</label>
+                <label><input type="radio" name="reduce_private_vehicle_use" value="3"> 3</label>
+                <label><input type="radio" name="reduce_private_vehicle_use" value="4"> 4</label>
+                <label><input type="radio" name="reduce_private_vehicle_use" value="5"> 5</label>
+            </div>
+        
+            <label>I’m exposed to air pollution while using my current travel mode.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="pollution_exposure_current_mode" value="1"> 1</label>
+                <label><input type="radio" name="pollution_exposure_current_mode" value="2"> 2</label>
+                <label><input type="radio" name="pollution_exposure_current_mode" value="3"> 3</label>
+                <label><input type="radio" name="pollution_exposure_current_mode" value="4"> 4</label>
+                <label><input type="radio" name="pollution_exposure_current_mode" value="5"> 5</label>
+            </div>
+        
+            <label>I would switch from a private vehicle to public transport if I knew it would reduce my exposure to air pollution.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="switch_to_public_transport" value="1"> 1</label>
+                <label><input type="radio" name="switch_to_public_transport" value="2"> 2</label>
+                <label><input type="radio" name="switch_to_public_transport" value="3"> 3</label>
+                <label><input type="radio" name="switch_to_public_transport" value="4"> 4</label>
+                <label><input type="radio" name="switch_to_public_transport" value="5"> 5</label>
+            </div>
+        
+                <!-- Attitudes Toward Route Preference -->
+            <h4>Attitudes Toward Route Preference (Existing Route vs. Greener Route)</h4>
+            <label>I will take a route if it reduces my exposure to air pollution.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="take_route_reduce_pollution" value="1"> 1</label>
+                <label><input type="radio" name="take_route_reduce_pollution" value="2"> 2</label>
+                <label><input type="radio" name="take_route_reduce_pollution" value="3"> 3</label>
+                <label><input type="radio" name="take_route_reduce_pollution" value="4"> 4</label>
+                <label><input type="radio" name="take_route_reduce_pollution" value="5"> 5</label>
+            </div>
+
+            <label>I think avoiding high traffic volume roads can reduce my exposure to air pollution even if it takes less time.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="avoid_high_traffic_pollution" value="1"> 1</label>
+                <label><input type="radio" name="avoid_high_traffic_pollution" value="2"> 2</label>
+                <label><input type="radio" name="avoid_high_traffic_pollution" value="3"> 3</label>
+                <label><input type="radio" name="avoid_high_traffic_pollution" value="4"> 4</label>
+                <label><input type="radio" name="avoid_high_traffic_pollution" value="5"> 5</label>
+            </div>
+
+            <label>I would take a greener route with better air quality even if it takes more time.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="take_greener_route" value="1"> 1</label>
+                <label><input type="radio" name="take_greener_route" value="2"> 2</label>
+                <label><input type="radio" name="take_greener_route" value="3"> 3</label>
+                <label><input type="radio" name="take_greener_route" value="4"> 4</label>
+                <label><input type="radio" name="take_greener_route" value="5"> 5</label>
+            </div>
+
+            <!-- Attitudes Toward Technology and Real-Time Information -->
+            <h4>Attitudes Toward Technology and Real-Time Information</h4>
+            <label>If real-time air quality information was available, it would influence my choice of route or mode of transport.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="real_time_info_influence_choice" value="1"> 1</label>
+                <label><input type="radio" name="real_time_info_influence_choice" value="2"> 2</label>
+                <label><input type="radio" name="real_time_info_influence_choice" value="3"> 3</label>
+                <label><input type="radio" name="real_time_info_influence_choice" value="4"> 4</label>
+                <label><input type="radio" name="real_time_info_influence_choice" value="5"> 5</label>
+            </div>
+
+            <label>I would be more likely to switch to public transport or greener routes if I had access to real-time air quality data.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="switch_to_public_transport_greener" value="1"> 1</label>
+                <label><input type="radio" name="switch_to_public_transport_greener" value="2"> 2</label>
+                <label><input type="radio" name="switch_to_public_transport_greener" value="3"> 3</label>
+                <label><input type="radio" name="switch_to_public_transport_greener" value="4"> 4</label>
+                <label><input type="radio" name="switch_to_public_transport_greener" value="5"> 5</label>
+            </div>
+
+            <label>Technology-based tools, such as mobile apps, help me make better decisions about avoiding polluted areas during my commute.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="tech_tools_avoid_pollution" value="1"> 1</label>
+                <label><input type="radio" name="tech_tools_avoid_pollution" value="2"> 2</label>
+                <label><input type="radio" name="tech_tools_avoid_pollution" value="3"> 3</label>
+                <label><input type="radio" name="tech_tools_avoid_pollution" value="4"> 4</label>
+                <label><input type="radio" name="tech_tools_avoid_pollution" value="5"> 5</label>
+            </div>
+
+            <label>I ride EVs as they reduce pollution and have less impact on the environment.</label>
+            <div class="likert-scale">
+                <label><input type="radio" name="ride_ev_reduce_pollution" value="1"> 1</label>
+                <label><input type="radio" name="ride_ev_reduce_pollution" value="2"> 2</label>
+                <label><input type="radio" name="ride_ev_reduce_pollution" value="3"> 3</label>
+                <label><input type="radio" name="ride_ev_reduce_pollution" value="4"> 4</label>
+                <label><input type="radio" name="ride_ev_reduce_pollution" value="5"> 5</label>
+            </div>
+        </section>
+
+
+        <section id="socio-demographic">
+            <h3>Socio-Demographic Survey</h3>
+        
+            <!-- Gender -->
+            <label for="gender">Please specify your gender:</label>
+            <select id="gender" name="gender">
+                <option value="" disabled selected>Select your gender</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="prefer_not_to_say">Prefer not to say</option>
+            </select>
+        
+            <!-- Age -->
+            <label for="age">Please specify your age:</label>
+            <select id="age" name="age">
+                <option value="" disabled selected>Select your age</option>
+                <option value="15-19">15-19</option>
+                <option value="20-29">20-29</option>
+                <option value="30-44">30-44</option>
+                <option value="44-59">44-59</option>
+                <option value="60_above">More than 60</option>
+            </select>
+        
+            <!-- Occupation -->
+            <label for="occupation">What is your occupation?</label>
+            <select id="occupation" name="occupation">
+                <option value="" disabled selected>Select your occupation</option>
+                <option value="student">Student</option>
+                <option value="employee">Employee (Private or Govt)</option>
+                <option value="self_employed">Self-employed</option>
+                <option value="homemaker">Homemaker</option>
+                <option value="unemployed">Unemployed</option>
+                <option value="retired">Retired</option>
+                <option value="other">Other</option>
+            </select>
+        
+            <!-- Educational Level -->
+            <label for="education">Educational level:</label>
+            <select id="education" name="education">
+                <option value="" disabled selected>Select your education level</option>
+                <option value="primary_secondary">Primary/Secondary</option>
+                <option value="class_10">Class 10th</option>
+                <option value="higher_secondary">Higher Secondary/Class 12th</option>
+                <option value="graduate">Graduate</option>
+                <option value="postgraduate">Postgraduate</option>
+            </select>
+        
+            <!-- Monthly Household Income -->
+            <label for="income">Monthly household income (in Rs):</label>
+            <select id="income" name="income">
+                <option value="" disabled selected>Select your income range</option>
+                <option value="less_25k">Less than 25k</option>
+                <option value="25_50k">25k - 50k</option>
+                <option value="50_1lakh">50k - 1 lakh</option>
+                <option value="1_1_5lakh">1 lakh - 1.5 lakh</option>
+                <option value="above_1_5lakh">More than 1.5 lakh</option>
+            </select>
+        
+            <!-- Household Size -->
+            <label for="household_size">Household size:</label>
+            <select id="household_size" name="household_size">
+                <option value="" disabled selected>Select household size</option>
+                <option value="1">1</option>
+                <option value="1_3">1-3 people</option>
+                <option value="3_5">3-5 people</option>
+                <option value="more_5">More than 5</option>
+            </select>
+        
+            <!-- No. of Vehicles -->
+            <label for="vehicles">Number of vehicles in household:</label>
+                <div class="vehicle-card-container">
+             <div class="vehicle-card">
+                <p>Cars</p>
+                <input type="number" id="car_count" name="car_count" min="0" placeholder="0">
+              </div>
+              <div class="vehicle-card">
+                <p>Two-Wheelers</p>
+                <input type="number" id="two_wheeler_count" name="two_wheeler_count" min="0" placeholder="0">
+             </div>
+             <div class="vehicle-card">
+                <p>Bicycles</p>
+                <input type="number" id="bicycle_count" name="bicycle_count" min="0" placeholder="0">
+            </div>
+             </div>
+
+        
+            <!-- Driving License -->
+            <div class="driving-license-question">
+                <label>Do you have a driving license?</label>
+                <div class="driving-license-options">
+                    <label class="radio-card">
+                        <input type="radio" name="driving_license" value="yes">
+                        <span>Yes</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="driving_license" value="no">
+                        <span>No</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+        
+       
+
+        <footer class="footer">
+            Made with ♥ by 
+            <a href="https://sites.google.com/view/kapil-lab/home" target="_blank" class="footer-link">Kapil</a> 
+            and 
+            <a href="https://www.mustlab.in/faculty" target="_blank" class="footer-link">Prof. Arkopal Goswami</a>
+        </footer>
+    
+    <div class="form-actions">
+        <button type="button" onclick="submitSurvey()">Submit</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

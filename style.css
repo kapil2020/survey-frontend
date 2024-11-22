@@ -1,0 +1,319 @@
+/* General Section Styles */
+section {
+    margin: 20px auto;
+    padding: 15px 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    max-width: 600px;
+}
+
+section h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+section label {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #444;
+    text-align: center; /* Ensures all labels are center-aligned */
+}
+
+/* Input Fields */
+section input[type="text"],
+section input[type="number"],
+section select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px auto 15px auto; /* Center-aligned inputs */
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+section input[type="text"]:focus,
+section input[type="number"]:focus,
+section select:focus {
+    border-color: #1a36d8;
+    box-shadow: 0 0 5px rgba(26, 54, 216, 0.5);
+    outline: none;
+}
+
+/* Radio and Checkbox Buttons */
+section input[type="radio"],
+section input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+section input[type="radio"]:hover,
+section input[type="checkbox"]:hover {
+    border-color: #1a36d8;
+}
+
+section input[type="radio"]:checked,
+section input[type="checkbox"]:checked {
+    background-color: #1a36d8;
+    border-color: #1a36d8;
+    box-shadow: 0 0 8px rgba(26, 54, 216, 0.5);
+}
+
+section input[type="radio"] + label,
+section input[type="checkbox"] + label {
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+section input[type="radio"]:checked + label,
+section input[type="checkbox"]:checked + label {
+    color: #1a36d8;
+    font-weight: 600;
+    transform: scale(1.05);
+}
+
+/* Likert Scale */
+.likert-scale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 500px;
+    margin: 15px auto;
+    gap: 12px;
+}
+
+.likert-scale label {
+    font-family: 'Arial', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    color: #444;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.likert-scale label:hover {
+    color: #1a36d8;
+    transform: scale(1.05);
+}
+
+.likert-scale input[type="radio"] {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: #fdfdfd;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 0 auto;
+}
+
+.likert-scale input[type="radio"]:hover {
+    border-color: #1a36d8;
+    transform: scale(1.15);
+    box-shadow: 0 4px 6px rgba(13, 71, 161, 0.2);
+}
+
+.likert-scale input[type="radio"]:checked {
+    background-color: #1a36d8;
+    border-color: #1a36d8;
+    box-shadow: 0 0 10px rgba(13, 71, 161, 0.6);
+}
+
+.likert-scale input[type="radio"]:checked + label {
+    font-weight: 600;
+    color: #1a36d8;
+    transform: scale(1.1);
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px auto;
+    justify-content: center; /* Center-aligns the checkboxes */
+    align-items: center;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9rem;
+    color: #555;
+    background-color: #f9f9f9;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.checkbox-group label:hover {
+    background-color: #eef3ff;
+    border-color: #1a36d8;
+    transform: scale(1.02);
+}
+
+/* Vehicle Cards */
+.vehicle-card-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.vehicle-card {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.vehicle-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.vehicle-card p {
+    font-family: 'Arial', sans-serif;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.vehicle-card input[type="number"] {
+    width: 60%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vehicle-card input[type="number"]:focus {
+    border-color: #1a36d8;
+    box-shadow: 0 0 5px rgba(26, 54, 216, 0.5);
+    outline: none;
+}
+
+/* Driving License Question */
+.driving-license-question {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.driving-license-options {
+    display: inline-flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.driving-license-options label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #444;
+}
+
+.driving-license-options label:hover {
+    background-color: #eef3ff;
+    border-color: #1a36d8;
+    transform: scale(1.05);
+}
+
+.driving-license-options input[type="radio"] {
+    display: none;
+}
+
+.driving-license-options input[type="radio"]:checked + span {
+    font-weight: 600;
+    color: #1a36d8;
+}
+
+
+/* Center the Submit Button */
+.form-actions {
+    text-align: center; /* Centers the button */
+    margin-top: 20px; /* Adds spacing from the rest of the form */
+}
+
+.form-actions button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    background-color: #1a36d8;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-actions button:hover {
+    background-color: #0d47a1; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.form-actions button:active {
+    transform: scale(1); /* Reset scale on click */
+}
+
+
+.footer {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9rem;
+    color: #555;
+    padding: 10px 0;
+    margin-top: 20px;
+    background-color: #f9f9f9; /* Optional: Light background for separation */
+    border-top: 1px solid #ddd; /* Optional: Subtle border for definition */
+}
+
+.footer-link {
+    color: #1a36d8; /* Blue color for links */
+    text-decoration: none; /* Removes underline for a cleaner look */
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #0d47a1; /* Darker blue on hover */
+    text-shadow: 0 0 5px rgba(13, 71, 161, 0.6); /* Subtle glow effect */
+}
+
+.footer-link:active {
+    color: #0a2e7d; /* Slightly darker color on click */
+}
