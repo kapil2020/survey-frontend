@@ -129,11 +129,11 @@ async function submitSurvey() {
     console.log("Survey Data:", surveyData);
 
     try {
-        const response = await fetch('/submit-survey', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(surveyData)
-        });
+        const response = await fetch('https://survey-backend-zsdp.onrender.com/submit-survey', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(surveyData),
+});
 
         if (response.ok) {
             alert("Survey submitted successfully!");
