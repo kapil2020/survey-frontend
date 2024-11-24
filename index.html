@@ -1,5 +1,5 @@
 <section id="survey-intro">
-    <h1>Impact of Air Pollution Exposure on Travel Behaviour 🌫️</h1>
+    <h1>Impact of Air Pollution Exposure on Travel Behaviour </h1>
     <div class="intro-content">
         <p>
             <strong>Did You Know?</strong> Our exposure to air pollution is highest during travel—more than any other daily activity! 🚗🚌🛵 From sitting in traffic jams 🚦 to waiting at bus stops ⏳, commuting exposes you to harmful pollutants at levels far greater than indoors or other activities. 🌍💡
@@ -17,7 +17,7 @@
         <hr />
         <p>
             <strong>📧 For Queries or Assistance:</strong><br />
-            Mr. Kapil Meena: <a href="mailto:kapil.meen@kgpian.iitkgp.ac.in">kapil.meen@kgpian.iitkgp.ac.in</a> (Research Scholar, IIT Kharagpur)<br />
+            Mr. Kapil Meena: <a href="mailto:kapil.meena@kgpian.iitkgp.ac.in">kapil.meena@kgpian.iitkgp.ac.in</a> (Research Scholar, IIT Kharagpur)<br />
             Prof. Arkopal Goswami: <a href="mailto:akgoswami@infra.iitkgp.ac.in">akgoswami@infra.iitkgp.ac.in</a> (Faculty, Department of Infrastructure, IIT Kharagpur)
         </p>
         <p><strong>✨ Join us in shaping the future of urban mobility. Your voice matters! 😊</strong></p>
@@ -342,10 +342,32 @@
         </select>
         </section>
         <!-- Section 2: Air Quality Awareness -->
-        <section id="air-quality-awareness">
-            <h3>Section 2: Air Quality Awareness</h3>
+                <section id="air-quality-awareness">
+         <h3>Section 2: Air Quality Awareness</h3>
+                
+                <label>Q.11 Do you know air pollution can cause adverse health effects?</label>
+                <select id="health_effects_awareness">
+                <option value="" disabled selected>Select your response</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="dont_know">I don’t know</option>
+            </select>
 
-            <label>Q.12 Which of the above scenarios describes your typical exposure to air quality during your weekday commute in this winter season?</label>
+            <label>Q.12 Do you have any pre-existing health issues (like asthma, bronchitis, lung issues, etc.) which may be worsened due to exposure to bad air quality?</label>
+            <select id="health_issues">
+                <option value="" disabled selected>Select your response</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="dont_know">I don’t know</option>
+            </select>
+
+            <!-- Add an image before Q.13 -->
+            <div style="text-align: center; margin: 20px 0; padding: 10px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <img src="/aqi_info.png" alt="Air Quality Index Chart" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p style="margin-top: 10px; font-size: 14px; color: #555;">Figure: Air Quality Index (AQI) Levels and Categories</p>
+            </div>
+
+            <label>Q.13 Which of the above scenarios describes your typical exposure to air quality during your weekday commute in this winter season?</label>
             <select id="aqi_exposure">
                 <option value="" disabled selected>Select AQI exposure level</option>
                 <option value="good">Good</option>
@@ -356,7 +378,7 @@
                 <option value="severe">Severe</option>
             </select>
 
-            <label>Q.13 Are you aware of the Air Quality Index (AQI) levels as shown in the figure above and/or understand its implications on health?</label>
+            <label>Q.14 Are you aware of the Air Quality Index (AQI) levels as shown in the figure above and/or understand its implications on health?</label>
             <select id="aqi_awareness">
                 <option value="" disabled selected>Select awareness level</option>
                 <option value="aware_understand">Aware and understand it</option>
@@ -364,7 +386,7 @@
                 <option value="not_aware">Not aware</option>
             </select>
 
-            <label>Q.14 Which information source do you use for checking the Air Quality Index (AQI)/ AQI level?</label>
+            <label>Q.15 Which information source do you use for checking the Air Quality Index (AQI)/ AQI level?</label>
             <select id="aqi_info_source">
                 <option value="" disabled selected>Select information source</option>
                 <option value="website_app">Website or Mobile Applications</option>
@@ -374,7 +396,7 @@
                 <option value="not_check">Not check at all</option>
             </select>
 
-            <label>Q.15 How frequently do you look at the Air Quality Index/level?</label>
+            <label>Q.16 How frequently do you look at the Air Quality Index/level?</label>
             <select id="aqi_frequency">
                 <option value="" disabled selected>Select frequency</option>
                 <option value="daily">Daily</option>
@@ -384,7 +406,7 @@
                 <option value="never">Never</option>
             </select>
 
-            <label>Q.16 What steps/actions do you take if air quality is affecting during your commute?</label>
+            <label>Q.17 What steps/actions do you take if air quality is affecting during your commute?</label>
             <select id="aqi_actions">
                 <option value="" disabled selected>Select action</option>
                 <option value="change_route">Change the route</option>
@@ -394,9 +416,9 @@
                 <option value="no_action">No action</option>
             </select>
 
-            <label>Q.17 After or during travel, do you feel any of these? Please select all applicable</label>
+            <label>Q.18 After or during travel, do you feel any of these? Please select all applicable</label>
                 <div class="checkbox-group">
-                    <option value="" disabled selected>Select action</option>
+                    <option value="" disabled selected>Select</option>
                     <label><input type="checkbox" value="sneezing"> Sneezing</label>
                     <label><input type="checkbox" value="runny_nose"> Runny nose</label>
                     <label><input type="checkbox" value="eye_irritation"> Eye irritation</label>
@@ -408,7 +430,12 @@
 
         <section id="perception-attitude">
             <h3>Section 3: Perception/Attitude</h3>
-            <p>Rate your level of agreement with the following statements (1 = Strongly Disagree, 5 = Strongly Agree):</p>
+            <p class="likert-instructions">
+                <span class="emoji">📊</span>
+                Rate your level of agreement with the following statements: 
+                <strong>1 = Strongly Disagree</strong>, 
+                <strong>5 = Strongly Agree</strong>.
+            </p>
         
             <!-- General Air Pollution Awareness -->
             <h4>General Air Pollution Awareness</h4>
@@ -679,16 +706,33 @@
         
        
 
-        <footer class="footer">
-            Made with ♥ by 
-            <a href="https://sites.google.com/view/kapil-lab/home" target="_blank" class="footer-link">Kapil</a> 
-            and 
-            <a href="https://www.mustlab.in/faculty" target="_blank" class="footer-link">Prof. Arkopal Goswami</a>
-        </footer>
+        
     
     <div class="form-actions">
         <button type="button" onclick="submitSurvey()">Submit</button>
     </div>
     <script src="script.js"></script>
+
+    <footer class="footer">
+        <p>
+            Made with <span class="heart">♥</span> by 
+            <a href="https://sites.google.com/view/kapil-lab/home" target="_blank" class="footer-link">Kapil</a> 
+            and 
+            <a href="https://www.mustlab.in/faculty" target="_blank" class="footer-link">Prof. Arkopal Goswami</a>.
+        </p>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            © 2024 IIT Kharagpur. All rights reserved. 
+        </div>
+    </footer>
 </body>
 </html>
