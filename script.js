@@ -1,3 +1,4 @@
+// Function to retrieve user location
 function getLocation() {
     if (navigator.geolocation) {
         console.log("Geolocation API available, requesting location...");
@@ -7,6 +8,7 @@ function getLocation() {
     }
 }
 
+// Display user location in the form
 function showPosition(position) {
     console.log("Position retrieved:", position.coords.latitude, position.coords.longitude);
     document.getElementById("latitude").textContent = position.coords.latitude;
@@ -15,65 +17,80 @@ function showPosition(position) {
     document.getElementById("longitude").setAttribute("data-lon", position.coords.longitude);
 }
 
+// Handle geolocation errors
 function showError(error) {
-    switch (error.code) {
-        case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-        case error.TIMEOUT:
-            alert("The request to get user location timed out.");
-            break;
-        case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.");
-            break;
-    }
+    const errorMessages = {
+        1: "User denied the request for Geolocation.",
+        2: "Location information is unavailable.",
+        3: "The request to get user location timed out.",
+        4: "An unknown error occurred."
+    };
+    alert(errorMessages[error.code] || errorMessages[4]);
 }
 
+// Show or hide PT access mode dropdown based on travel mode selection
 function showPTAccess() {
     const travelMode = document.getElementById("travel_mode").value;
     const ptAccessMode = document.getElementById("pt_access_mode");
 
-    console.log("Travel mode selected:", travelMode);
-
     if (travelMode === "metro" || travelMode === "bus") {
         ptAccessMode.style.display = "block";
-        console.log("PT access mode shown");
     } else {
         ptAccessMode.style.display = "none";
         document.getElementById("access_mode").value = "none";
-        console.log("PT access mode hidden and set to none");
     }
 }
 
-async function submitSurvey() {
-    const latitude = document.getElementById("latitude").getAttribute("data-lat");
-    const longitude = document.getElementById("longitude").getAttribute("data-lon");
+// Validate form inputs
+function validateForm() {
+    const requiredFields = [
+        "landmark", "origin", "destination", "travel_mode", "frequency",
+        "purpose", "distance", "health_effects_awareness", "health_issues",
+        "aqi_exposure", "aqi_awareness", "aqi_info_source", "aqi_frequency",
+        "aqi_actions", "gender", "age", "occupation", "education", "income", "household_size"
+    ];
+
+    let isValid = true;
+
+    requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (!field.value || field.value.trim() === "") {
+            field.style.border = "2px solid red";
+            isValid = false;
+        } else {
+            field.style.border = "";
+        }
+    });
+
+    const drivingLicense = document.querySelector("input[name='driving_license']:checked");
+    if (!drivingLicense) {
+        alert("Please select whether you have a driving license.");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        alert("Please fill out all required fields.");
+    }
+
+    return isValid;
+}
+
+// Collect form data
+function collectSurveyData() {
+    const latitude = document.getElementById("latitude").getAttribute("data-lat") || "Not available";
+    const longitude = document.getElementById("longitude").getAttribute("data-lon") || "Not available";
     const accessMode = document.getElementById("pt_access_mode").style.display === "block"
         ? document.getElementById("access_mode").value
         : "none";
 
     // Collect Likert scale responses dynamically
     const likertQuestions = [
-        "info_about_air_pollution",
-        "check_air_pollution_apps",
-        "air_quality_influences_trip",
-        "air_pollution_impact_health",
-        "public_transport_lower_pollution",
-        "prefer_public_transport_reduce_pollution",
-        "public_transport_cleaner_environment",
-        "reduce_private_vehicle_use",
-        "pollution_exposure_current_mode",
-        "switch_to_public_transport",
-        "take_route_reduce_pollution",
-        "avoid_high_traffic_pollution",
-        "take_greener_route",
-        "real_time_info_influence_choice",
-        "switch_to_public_transport_greener",
-        "tech_tools_avoid_pollution",
-        "ride_ev_reduce_pollution"
+        "info_about_air_pollution", "check_air_pollution_apps", "air_quality_influences_trip",
+        "air_pollution_impact_health", "public_transport_lower_pollution", "prefer_public_transport_reduce_pollution",
+        "public_transport_cleaner_environment", "reduce_private_vehicle_use", "pollution_exposure_current_mode",
+        "switch_to_public_transport", "take_route_reduce_pollution", "avoid_high_traffic_pollution",
+        "take_greener_route", "real_time_info_influence_choice", "switch_to_public_transport_greener",
+        "tech_tools_avoid_pollution", "ride_ev_reduce_pollution"
     ];
 
     const likertResponses = {};
@@ -82,32 +99,33 @@ async function submitSurvey() {
         likertResponses[question] = response ? response.value : null;
     });
 
-    // Collect checkbox responses
+    // Collect symptoms
     const symptoms = [];
     document.querySelectorAll("input[type='checkbox']:checked").forEach(checkbox => {
         symptoms.push(checkbox.value);
     });
 
-    // Combine all data into a single surveyData object
-    const surveyData = {
-        latitude: latitude || "Not available",
-        longitude: longitude || "Not available",
+    return {
+        latitude,
+        longitude,
         landmark: document.getElementById("landmark").value || "Not specified",
         origin: document.getElementById("origin").value,
         destination: document.getElementById("destination").value,
         travelMode: document.getElementById("travel_mode").value,
-        accessMode: accessMode,
+        accessMode,
         frequency: document.getElementById("frequency").value,
         purpose: document.getElementById("purpose").value,
         distance: document.getElementById("distance").value,
+        healthEffectsAwareness: document.getElementById("health_effects_awareness").value,
+        healthIssues: document.getElementById("health_issues").value,
         aqiExposure: document.getElementById("aqi_exposure").value,
         aqiAwareness: document.getElementById("aqi_awareness").value,
         aqiInfoSource: document.getElementById("aqi_info_source").value,
         aqiFrequency: document.getElementById("aqi_frequency").value,
         aqiActions: document.getElementById("aqi_actions").value,
         otherSymptoms: document.getElementById("other_symptoms").value || "None",
-        symptoms: symptoms,
-        likertResponses: likertResponses,
+        symptoms,
+        likertResponses,
         socioDemographic: {
             gender: document.getElementById("gender").value,
             age: document.getElementById("age").value,
@@ -125,20 +143,29 @@ async function submitSurvey() {
                 : "Not answered"
         }
     };
+}
 
+
+
+
+// Submit survey data
+async function submitSurvey() {
+    if (!validateForm()) return;
+
+    const surveyData = collectSurveyData();
     console.log("Survey Data:", surveyData);
 
     try {
-        const response = await fetch('https://survey-backend-zsdp.onrender.com/submit-survey', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(surveyData),
-});
+        const response = await fetch('/submit-survey', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(surveyData)
+        });
 
         if (response.ok) {
             alert("Survey submitted successfully!");
         } else {
-            alert("Failed to submit survey");
+            alert("Failed to submit survey.");
         }
     } catch (error) {
         console.error("Error submitting survey:", error);
