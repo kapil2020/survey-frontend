@@ -155,17 +155,17 @@ async function submitSurvey() {
     const surveyData = collectSurveyData();
     console.log("Survey Data:", surveyData);
 
-    try {
-        const response = await fetch('/submit-survey', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(surveyData)
-        });
+ try {
+        const response = await fetch('https://survey-backend-zsdp.onrender.com/submit-survey', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(surveyData),
+});
 
         if (response.ok) {
             alert("Survey submitted successfully!");
         } else {
-            alert("Failed to submit survey.");
+            alert("Failed to submit survey");
         }
     } catch (error) {
         console.error("Error submitting survey:", error);
