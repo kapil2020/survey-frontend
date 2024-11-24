@@ -34,9 +34,8 @@ Backend Repository: [Survey Backend](https://github.com/kapil2020/survey-backend
 
 ## ✉️ Contact
 For questions or issues, contact:
-- **Kapil Meena**: [kapil.meen@kgpian.iitkgp.ac.in](mailto:kapil.meen@kgpian.iitkgp.ac.in)
-- **Prof. Arkopal Goswami**: [akgoswami@infra.iitkgp.ac.in](mailto:akgoswami@infra.iitkgp.ac.in)
+- **Kapil Meena**: [kapil.meena@kgpian.iitkgp.ac.in](mailto:kapil.meen@kgpian.iitkgp.ac.in)
 
-## ❤️ Acknowledgments
-- Made with ❤️ by [Kapil Meena](https://sites.google.com/view/kapil-lab/home) and [Prof. Arkopal Goswami](https://www.mustlab.in/faculty).
-- Supported by IIT Kharagpur's Department of Infrastructure.
+
+
+- Made with ❤️ 
