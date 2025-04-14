@@ -3,7 +3,7 @@
 This repository hosts the frontend code for the **Custom Design Dynamic Survey (CDDS)**. The application collects survey responses to analyze travel behavior and air pollution exposure, with a user-friendly interface and dynamic question flow.
 
 ## 🌟 Features
-- Interactive and responsive survey design.
+- Interactive and responsive dynamic survey design.
 - Dynamic questions based on user inputs (e.g., travel mode).
 - Real-time air quality chart embedded in the survey.
 - Modern UI/UX with accessibility-focused design.
